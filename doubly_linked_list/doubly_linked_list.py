@@ -74,7 +74,8 @@ class DoublyLinkedList:
     List and inserts it as the new head node of the List.
     """
     def move_to_front(self, node):
-        pass
+        new_head = self.delete(node) #store it
+        self.add_to_head(new_head) #run add to head with it
         
     """
     Removes the input node from its current spot in the 
