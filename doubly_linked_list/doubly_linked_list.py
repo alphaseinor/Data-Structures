@@ -95,4 +95,12 @@ class DoublyLinkedList:
     in the List.
     """
     def get_max(self):
-        pass
+        currentNode = self.head
+        max = 0
+
+        while currentNode is not None:
+            if currentNode.value > max:
+                max = currentNode.value
+            currentNode = currentNode.next
+
+        return max
