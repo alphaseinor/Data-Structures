@@ -48,10 +48,6 @@ class LinkedList:
         self.head = None
         self.tail = None 
 
-    # def prepend(self, value):
-    #     current = self.head
-    #     self.head = Node(value, current)
-
     def add_to_tail(self, value):
         new_node = Node(value)
         if self.head is None and self.tail is None:
