@@ -81,14 +81,35 @@ class DoublyLinkedList:
     List and inserts it as the new tail node of the List.
     """
     def move_to_end(self, node):
-        pass
+        new_tail = self.delete(node) #store it
+        self.add_to_tail(new_tail) #run add to tail with it
 
     """
     Deletes the input node from the List, preserving the 
     order of the other elements of the List.
     """
     def delete(self, node):
-        pass
+        if self.length == 0:
+            return None
+
+        self.length -= 1 
+        if self.head is self.tail: #is the node lonely?
+            self.head, self.tail = None, None
+            return node.value
+        elif node is self.head: #is it not lonely, and is head
+            self.head = self.head.next
+            node.next, self.head.prev = None, None
+            return node.value
+        elif node is self.tail: #is it not lonely, not head, but is tail
+            self.tail = self.tail.prev
+            node.prev, self.tail.next = None, None
+            return node.value
+        else: #it's not lonely, it's not head or tail, but somewhere in between
+            prev = node.prev #store the prev Node object 
+            next = node.next #store the next Node objext
+            prev.next = node.next #access the previous node's next, and assign it to the "next" node from above
+            next.prev = node.prev #access the next's node's previous value and assign it to the "prev" node from above
+            return node.value #seems like this should leak memory... but it passes the tests
 
     """
     Finds and returns the maximum value of all the nodes 
