@@ -52,6 +52,7 @@ class DoublyLinkedList:
             elif self.length > 1: #it's not lonely
                 self.head = self.head.next #transplant it's head!
                 self.head.prev = None #nuke it from orbit!
+                
             self.length -= 1 #shrink the length
 
         return currentNode #returns none by default for a 0 case
