@@ -2,7 +2,6 @@
 Binary search trees are a data structure that enforce an ordering over 
 the data they store. That ordering in turn makes it a lot more efficient 
 at searching for a particular piece of data in the tree. 
-
 This part of the project comprises two days:
 1. Implement the methods `insert`, `contains`, `get_max`, and `for_each`
    on the BSTNode class.
@@ -17,26 +16,76 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        # compare value with node.value
+        if value < self.value:
+            #left turn signal
+            if self.left == None:
+                #done
+                self.left = BSTNode(value)
+            else:
+                #ooooh, mild recursion?
+                self.left.insert(value)
+        else:
+            #right turn clyde!
+            if self.right == None:
+                self.right = BSTNode(value)
+            else:
+                #ooooh, mild recursion? 
+                self.right.insert(value)
+
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        if self.value == target:
+            return True
+        if target < self.value:
+            #left turn signal
+            if self.left == None:
+                #dead end
+                return False
+            else:
+                #oooooh mild recursion!
+                return self.left.contains(target)
+        else:
+            #right turn clyde
+            if self.right == None:
+                #dead end
+                return False
+            else:
+                #oooooh mild recursion!
+                return self.right.contains(target)
+
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        #right turn clyde until the end
+        if self.right == None:
+            #dead end
+            return self.value
+        else:
+            #oooooh mild recursion!
+            return self.right.get_max()
+
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+        #call the anonymous function
+        fn(self.value)
+        #let's do a recursive left right
+        if self.left:
+            self.left.for_each(fn)
+        if self.right:
+            self.right.for_each(fn)
 
     # Part 2 -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
-    def in_order_print(self):
+    def in_order_dft(self):
+        pass
+
+    def in_order_print(self, something):
         pass
 
     # Print the value of every node, starting with the given node,
@@ -63,7 +112,7 @@ class BSTNode:
 """
 This code is necessary for testing the `print` methods
 """
-bst = BinarySearchTree(1)
+bst = BSTNode(1)
 
 bst.insert(8)
 bst.insert(5)
